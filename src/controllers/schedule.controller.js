@@ -29,9 +29,17 @@ const updateSchedule = catchAsync(async (req, res) => {
   res.json({ message: 'success' });
 });
 
+const deleteSchedule = catchAsync(async (req, res) => {
+  const scheduleId = req.params.id || '';
+
+  await Schedule.findByIdAndRemove(scheduleId);
+  res.json({ message: 'success' });
+});
+
 module.exports = {
   getSchedules,
   createSchedule,
   updateSchedule,
   getSchedule,
+  deleteSchedule,
 };
